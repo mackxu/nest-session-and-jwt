@@ -3,13 +3,16 @@ import {
   Get,
   Headers,
   Inject,
+  Req,
   Res,
   Session,
   UnauthorizedException,
+  UseGuards,
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Response } from 'express';
 import { JwtService } from '@nestjs/jwt';
+import { LoginGuard } from './login.guard';
 
 @Controller()
 export class AppController {
@@ -51,6 +54,13 @@ export class AppController {
       code: 200,
       msg: 'success',
     };
+  }
+
+  @Get('logined')
+  @UseGuards(LoginGuard)
+  logined(@Req() req: any) {
+    console.log('count: ', req.count);
+    return 'logined!!';
   }
 
   @Get('sess')

@@ -24,3 +24,6 @@ Session {
   count: 1
 }
 ```
+
+## LoginGuard 守卫
+localhost:3001/logined
